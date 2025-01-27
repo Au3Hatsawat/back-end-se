@@ -8,9 +8,6 @@ npm start
 ```
 
 
-## Todo
 
-- [ ] CRUD model
-- [ ] Reserve_Hotal
-- [ ] Buy_TicketEvent
+
 
