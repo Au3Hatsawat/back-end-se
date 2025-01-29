@@ -1,10 +1,12 @@
-const express = require("express");
-const authentication = require("./authentication.routes");
+import express from "express";
+import authentication from "./authentication.routes";
+
 const users = require("./users.routes")
+
 
 const router = express.Router();
 
-module.exports = () => {
+export default () => {
     authentication(router);
     users(router);
     

@@ -1,10 +1,11 @@
-const {get} = require('lodash');
-const {getUserBySessionToken} = require('../models/users');
+import { get } from 'lodash';
+import { getUserBySessionToken } from '../models/users';
+import express from "express";
 
-const isOwner = (req , res ,next) => {
+export const isOwner = (req:express.Request , res:express.Response , next:express.NextFunction):any => {
     try {
         const {id} = req.params;
-        const currentUserId = get(req , 'identity._id');
+        const currentUserId:string = get(req , 'identity._id');
 
         if(!currentUserId) {
             return res.sendStatus(403);
@@ -20,7 +21,3 @@ const isOwner = (req , res ,next) => {
         return res.sendStatus(400);
     }
 };
-
-module.exports = {
-    isOwner
-}

@@ -1,12 +1,12 @@
-const express = require("express");
-const http = require("http");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const compression = require("compression");
-const cors = require("cors");
-const config = require("./src/configs/config.js");
-const mongoose = require("mongoose");
-const router = require("./src/routes/index.js");
+import express from "express";
+import http from "http";
+import cors from "cors";
+import compression from "compression";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import {config} from "./configs/config";
+import mongoose from "mongoose";
+import router from "./routes/index"
 
 const app = express();
 

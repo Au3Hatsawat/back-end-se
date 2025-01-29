@@ -1,7 +1,8 @@
-const {merge} = require('lodash');
-const {getUserBySessionToken} = require('../models/users');
+import { merge } from 'lodash';
+import { getUserBySessionToken } from '../models/users';
+import express from "express";
 
-const isAuthenticated = async (req , res , next) =>{
+export const isAuthenticated = async (req:express.Request , res:express.Response , next:express.NextFunction):Promise<any> =>{
     try{
         const sessionToken = req.cookies['SOFTWARE-ENGINEER-CLASS'];
 
@@ -24,7 +25,4 @@ const isAuthenticated = async (req , res , next) =>{
     }
 }
 
-module.exports = {
-    isAuthenticated
-}
 

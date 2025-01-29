@@ -1,7 +1,8 @@
-const {getUserByEmail , createUser} = require("../models/users");
-const {random, authentication} = require("../helpers/encryption");
+import express from "express";
+import {random , authentication} from "../helpers/encryption";
+import { getUserByEmail , createUser } from "../models/users";
 
-const login = async (req , res) => {
+export const login = async (req:express.Request , res:express.Response):Promise<any> => {
     try {
         const {email , password} = req.body;
         if(!email || !password) {
@@ -32,7 +33,7 @@ const login = async (req , res) => {
     }
 }
 
-const register = async (req , res) => {
+export const register = async (req:express.Request , res:express.Response):Promise<any> => {
     try {
         const { userName , email , password , firstName , lastName , province} = req.body;
 
@@ -64,9 +65,3 @@ const register = async (req , res) => {
         return res.sendStatus(400);
     }
 } 
-
-
-module.exports = {
-    register,
-    login
-}
