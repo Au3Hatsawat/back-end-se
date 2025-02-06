@@ -24,7 +24,7 @@ export const login = async (req:express.Request , res:express.Response):Promise<
 
         await user.save();
 
-        res.cookie('SOFTWARE-ENGINEER-CLASS' , user.authentication.sessionToken, { domain : 'localhost' , path : '/' });
+        res.cookie('token' , user.authentication.sessionToken, { domain : 'localhost' , path : '/' });
 
         return res.status(200).json(user).end();
     }catch(err){
@@ -35,20 +35,20 @@ export const login = async (req:express.Request , res:express.Response):Promise<
 
 export const register = async (req:express.Request , res:express.Response):Promise<any> => {
     try {
-        const { userName , email , password , firstName , lastName , province} = req.body;
+        const { email , password , firstName , lastName , address , phoneNumber , role } = req.body;
 
-        if(!email || !userName || !password || !firstName || !lastName || !province){
+        if(!email || !password || !firstName || !lastName || !phoneNumber || !role ){
             return res.sendStatus(400);
         }
 
         const existingUser = await getUserByEmail(email);
-        if(!existingUser){
+        if(existingUser){
             return res.sendStatus(400);
         }
 
+        const dateCreate = Date.now();
         const salt = random();
         const user = await createUser({
-            userName,
             email,
             authentication: {
                 password : authentication(salt , password),
@@ -56,7 +56,9 @@ export const register = async (req:express.Request , res:express.Response):Promi
             },
             firstName,
             lastName,
-            province,
+            phoneNumber,
+            role,
+            dateCreate,
         });
 
         return res.status(200).json(user).end();

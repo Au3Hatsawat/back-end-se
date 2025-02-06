@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    userName : { type: String , require: true },
     email : {type: String , require: true},
     authentication : {
         password : {type : String , require : true , select: false},
@@ -10,10 +9,13 @@ const UserSchema = new mongoose.Schema({
     },
     firstName : {type : String , require : true},
     lastName : {type : String , require : true},
-    province : {type : String , require : true},
+    address : {type : String , require : false},
+    phoneNumber : {type : String , require : false},
+    role : {type : String , require : true},
+    dateCreate : {type : Date , require : true}
 });
 
-export const UserModel = mongoose.model("Users" , UserSchema);
+export const UserModel = mongoose.model("User" , UserSchema);
 
 export const getUsers = () => UserModel.find();
 export const getUserByEmail = (email:string) => UserModel.findOne({ email });

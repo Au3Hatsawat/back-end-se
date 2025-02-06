@@ -4,7 +4,7 @@ import express from "express";
 
 export const isAuthenticated = async (req:express.Request , res:express.Response , next:express.NextFunction):Promise<any> =>{
     try{
-        const sessionToken = req.cookies['SOFTWARE-ENGINEER-CLASS'];
+        const sessionToken = req.cookies['token'];
 
         if(!sessionToken) {
             return res.sendStatus(403);

@@ -1,4 +1,4 @@
-import { register , login} from "../controllers/authentication.controllers";
+import { register , login} from "../controllers/authentication.controller";
 import express from "express";
 
 export default (router:express.Router) => {
